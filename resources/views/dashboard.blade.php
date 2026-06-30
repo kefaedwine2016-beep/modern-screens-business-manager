@@ -1,116 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Screens Dashboard</title>
+@extends('layouts.app')
 
-    <style>
-        body{
-            margin:0;
-            font-family:Arial,Helvetica,sans-serif;
-            background:#f5f7fb;
-        }
+@section('content')
 
-        .sidebar{
-            position:fixed;
-            width:240px;
-            height:100vh;
-            background:#0B5ED7;
-            color:white;
-            padding:20px;
-        }
+<h1 class="text-3xl font-bold text-blue-700 mb-8">
+    Dashboard
+</h1>
 
-        .sidebar h2{
-            margin-bottom:30px;
-        }
+<!-- Statistics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
-        .sidebar a{
-            display:block;
-            color:white;
-            text-decoration:none;
-            padding:12px 0;
-            text-decoration:none;
-        }
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <p class="text-gray-500 text-sm">Customers</p>
+        <h2 class="text-4xl font-bold text-blue-700 mt-2">
+            {{ $totalCustomers }}
+        </h2>
+    </div>
 
-        .content{
-            margin-left:260px;
-            padding:30px;
-        }
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <p class="text-gray-500 text-sm">Quotations</p>
+        <h2 class="text-4xl font-bold text-green-600 mt-2">0</h2>
+    </div>
 
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:20px;
-            margin-top:25px;
-        }
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <p class="text-gray-500 text-sm">Installations</p>
+        <h2 class="text-4xl font-bold text-orange-500 mt-2">0</h2>
+    </div>
 
-        .card{
-            background:white;
-            padding:20px;
-            border-radius:10px;
-            box-shadow:0 2px 8px rgba(0,0,0,.1);
-        }
-
-        .card h3{
-            margin:0;
-            color:#0B5ED7;
-        }
-
-        .number{
-            font-size:32px;
-            margin-top:15px;
-            font-weight:bold;
-        }
-    </style>
-</head>
-<body>
-
-<div class="sidebar">
-    <h2>Modern Screens</h2>
-
-    <a href="#">🏠 Dashboard</a>
-    <a href="#">👥 Customers</a>
-    <a href="#">📐 Measurements</a>
-    <a href="#">💬 Quotations</a>
-    <a href="#">🧾 Invoices</a>
-    <a href="#">📅 Installations</a>
-    <a href="#">📦 Inventory</a>
-    <a href="#">📊 Reports</a>
-    <a href="#">⚙️ Settings</a>
-</div>
-
-<div class="content">
-
-    <h1>Dashboard</h1>
-
-    <p>Welcome to Modern Screens Business Manager Pro.</p>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Customers</h3>
-            <div class="number">0</div>
-        </div>
-
-        <div class="card">
-            <h3>Quotations</h3>
-            <div class="number">0</div>
-        </div>
-
-        <div class="card">
-            <h3>Invoices</h3>
-            <div class="number">0</div>
-        </div>
-
-        <div class="card">
-            <h3>Installations</h3>
-            <div class="number">0</div>
-        </div>
-
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <p class="text-gray-500 text-sm">Revenue</p>
+        <h2 class="text-3xl font-bold text-purple-600">
+            KSh 0
+        </h2>
     </div>
 
 </div>
 
-</body>
-</html>
+<!-- Recent Customers -->
+<div class="bg-white rounded-lg shadow-lg p-6">
+
+    <h2 class="text-2xl font-bold text-gray-700 mb-4">
+        Recent Customers
+    </h2>
+
+    <table class="w-full border border-gray-300">
+
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="border p-3">Name</th>
+                <th class="border p-3">Phone</th>
+                <th class="border p-3">Location</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        @forelse($recentCustomers as $customer)
+
+            <tr>
+                <td class="border p-3">{{ $customer->customer_name }}</td>
+                <td class="border p-3">{{ $customer->phone }}</td>
+                <td class="border p-3">{{ $customer->location }}</td>
+            </tr>
+
+        @empty
+
+            <tr>
+                <td colspan="3" class="border p-3 text-center text-gray-500">
+                    No customers found.
+                </td>
+            </tr>
+
+        @endforelse
+
+        </tbody>
+
+    </table>
+
+</div>
+
+@endsection
