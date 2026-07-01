@@ -15,7 +15,15 @@ class Customer extends Model
     ];
 
     /**
-     * A customer can have many measurements.
+     * Customer has many Site Visits.
+     */
+    public function siteVisits()
+    {
+        return $this->hasMany(SiteVisit::class);
+    }
+
+    /**
+     * (Legacy - will be removed after migration to Version 2)
      */
     public function measurements()
     {

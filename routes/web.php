@@ -1,14 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SiteVisitController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Dashboard
 |--------------------------------------------------------------------------
 */
 
@@ -32,7 +34,22 @@ Route::post('/customers', [CustomerController::class, 'store'])
 
 /*
 |--------------------------------------------------------------------------
-| Measurements
+| Site Visits
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/sitevisits', [SiteVisitController::class, 'index'])
+    ->name('sitevisits.index');
+
+Route::get('/sitevisits/create', [SiteVisitController::class, 'create'])
+    ->name('sitevisits.create');
+
+Route::post('/sitevisits', [SiteVisitController::class, 'store'])
+    ->name('sitevisits.store');
+
+/*
+|--------------------------------------------------------------------------
+| Measurements (Legacy - Version 1)
 |--------------------------------------------------------------------------
 */
 
