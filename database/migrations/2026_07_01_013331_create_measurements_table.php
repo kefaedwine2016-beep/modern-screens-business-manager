@@ -16,7 +16,14 @@ return new class extends Migration
             $table->id();
 
             // Customer
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')
+                  ->constrained()
+                  ->cascadeOnDelete();
+
+            // Product
+            $table->foreignId('product_id')
+                  ->constrained()
+                  ->cascadeOnDelete();
 
             // Location
             $table->string('room');
@@ -25,9 +32,6 @@ return new class extends Migration
             // Dimensions
             $table->decimal('width', 8, 2);
             $table->decimal('height', 8, 2);
-
-            // Product
-            $table->string('screen_type');
 
             // Quantity
             $table->integer('quantity')->default(1);

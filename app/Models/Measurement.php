@@ -8,20 +8,30 @@ class Measurement extends Model
 {
     protected $fillable = [
         'customer_id',
+        'product_id',
         'room',
         'opening_name',
         'width',
         'height',
-        'screen_type',
+        'area',
         'quantity',
+        'total_price',
         'notes',
     ];
 
     /**
-     * A measurement belongs to one customer.
+     * Customer Relationship
      */
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * Product Relationship
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

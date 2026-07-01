@@ -23,7 +23,22 @@
                         {{ $customer->customer_name }}
                     </option>
                 @endforeach
+            </select>
+        </div>
 
+        <!-- Product -->
+        <div class="mb-4">
+            <label class="block font-semibold mb-2">Product</label>
+
+            <select name="product_id" class="w-full border rounded p-3" required>
+                <option value="">Select Product</option>
+
+                @foreach($products as $product)
+                    <option value="{{ $product->id }}">
+                        {{ $product->product_name }}
+                        (KSh {{ number_format($product->selling_price, 2) }}/{{ $product->unit }})
+                    </option>
+                @endforeach
             </select>
         </div>
 
@@ -47,7 +62,7 @@
                 type="text"
                 name="opening_name"
                 class="w-full border rounded p-3"
-                placeholder="Window 1"
+                placeholder="Kitchen Window"
                 required>
         </div>
 
@@ -73,18 +88,6 @@
                 name="height"
                 class="w-full border rounded p-3"
                 required>
-        </div>
-
-        <!-- Screen Type -->
-        <div class="mb-4">
-            <label class="block font-semibold mb-2">Screen Type</label>
-
-            <select name="screen_type" class="w-full border rounded p-3" required>
-                <option>Magnetic</option>
-                <option>Velcro</option>
-                <option>Retractable</option>
-                <option>Pleated</option>
-            </select>
         </div>
 
         <!-- Quantity -->
