@@ -28,12 +28,14 @@
         <thead class="bg-gray-200">
             <tr>
                 <th class="border p-3">Customer</th>
+                <th class="border p-3">Product</th>
                 <th class="border p-3">Room</th>
                 <th class="border p-3">Opening</th>
                 <th class="border p-3">Width</th>
                 <th class="border p-3">Height</th>
-                <th class="border p-3">Screen Type</th>
+                <th class="border p-3">Area (m²)</th>
                 <th class="border p-3">Qty</th>
+                <th class="border p-3">Total (KSh)</th>
             </tr>
         </thead>
 
@@ -42,19 +44,48 @@
         @forelse($measurements as $measurement)
 
             <tr>
-                <td class="border p-3">{{ $measurement->customer->customer_name }}</td>
-                <td class="border p-3">{{ $measurement->room }}</td>
-                <td class="border p-3">{{ $measurement->opening_name }}</td>
-                <td class="border p-3">{{ $measurement->width }}</td>
-                <td class="border p-3">{{ $measurement->height }}</td>
-                <td class="border p-3">{{ $measurement->screen_type }}</td>
-                <td class="border p-3">{{ $measurement->quantity }}</td>
+                <td class="border p-3">
+                    {{ $measurement->customer->customer_name }}
+                </td>
+
+                <td class="border p-3">
+                    {{ $measurement->product->product_name }}
+                </td>
+
+                <td class="border p-3">
+                    {{ $measurement->room }}
+                </td>
+
+                <td class="border p-3">
+                    {{ $measurement->opening_name }}
+                </td>
+
+                <td class="border p-3">
+                    {{ number_format($measurement->width,2) }}
+                </td>
+
+                <td class="border p-3">
+                    {{ number_format($measurement->height,2) }}
+                </td>
+
+                <td class="border p-3">
+                    {{ number_format($measurement->area,2) }}
+                </td>
+
+                <td class="border p-3">
+                    {{ $measurement->quantity }}
+                </td>
+
+                <td class="border p-3 font-bold text-green-700">
+                    KSh {{ number_format($measurement->total_price,2) }}
+                </td>
+
             </tr>
 
         @empty
 
             <tr>
-                <td colspan="7" class="border p-3 text-center">
+                <td colspan="9" class="border p-3 text-center">
                     No measurements found.
                 </td>
             </tr>
