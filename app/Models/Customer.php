@@ -13,4 +13,12 @@ class Customer extends Model
         'address',
         'location',
     ];
+
+    /**
+     * A customer can have many measurements.
+     */
+    public function measurements()
+    {
+        return $this->hasMany(Measurement::class);
+    }
 }
